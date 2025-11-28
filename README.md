@@ -9,12 +9,15 @@ Traffic congestion remains one of the most pressing urban issues, leading to del
 
 ## Features
 
-Implements Double Deep Q-Network (DDQN), an advanced neural network method, for stable policy learning.
-A SUMO/TraCI framework based application for realistic traffic simulation and potential deployment.
-High scalability, designed to adapt traffic control to complex and large intersection networks.
-Less training time complexity achieved through Prioritized Experience Replay (PER), which efficiently samples high-error transitions.
-A Multi-Objective Reward model, specifically scoping traffic optimization by penalizing queue length and $\text{CO}_2$ emissions.
-Emergency Vehicle Priority module for real-time safety critical response.
+The system integrates three major innovations to provide a smart and sustainable solution to urban traffic challenges:
+
+Advanced DRL Algorithm: Employs Double Deep Q-Network with Prioritized Experience Replay DDQN+PER for stable and efficient policy learning.
+
+Multi-Objective Optimization: Uses a CO2/Fuel-Aware Reward Function to minimize traffic congestion (queue length) and environmental impact (emissions).
+
+Safety Priority: Includes an Emergency Vehicle Priority module that provides immediate green passage for ambulances and fire trucks.
+
+Adaptive Control: Dynamically adjusts signal timings based on real-time traffic conditions, eliminating the inefficiency of fixed-time systems.
 
 ## Requirements
 Operating System: Requires a 64-bit OS (Windows 10 or Ubuntu) for compatibility with deep learning frameworks.
@@ -35,6 +38,8 @@ Additional Dependencies: Includes sumolib, traci, tensorflow, and numpy for simu
 
 ## System Architecture
 
+The system architecture is built on a standard Reinforcement Learning framework, where the DDQN+PER agent learns from the SUMO environment via the TraCI interface.Reinforcement Learning Architecture FlowchartKey Interaction Loop:Environment (SUMO) sends the current State (queue length, traffic flow, emissions) via TraCI to the Agent.Agent DDQN+PER processes the state and chooses the optimal Action (signal phase change).Agent sends the Action command back to SUMO via TraCI.SUMO executes the phase change and calculates the new Reward (based on queue length and CO2.Agent uses the new state and reward to Update its policy network weights.
+
 <img width="631" height="632" alt="Screenshot 2025-10-12 172020" src="https://github.com/user-attachments/assets/fd514235-c991-435d-b34b-ee16dc5ab9ea" />
 
 
@@ -54,19 +59,20 @@ Additional Dependencies: Includes sumolib, traci, tensorflow, and numpy for simu
 
 <img width="1232" height="719" alt="Screenshot 2025-11-28 135731" src="https://github.com/user-attachments/assets/955ff5c4-ae24-4a20-9a38-ed03eef5b624" />
 
-This output visually compares the performance of the DDQN+PER model against the Fixed-Time and Standard DQN baselines across key metrics (bar{W}, Q, E).Avg. Waiting Time Reduction: 28% (relative to Fixed-Time baseline)
-Avg. $\text{CO}_2$ Emission Reduction: 18% (relative to Fixed-Time baseline)
-Note: These metrics are derived from the project's performance evaluations.
+This chart validates the efficiency and sustainability of the $\text{DDQN}+\text{PER}$ model by comparing it against Fixed-Time and standard $\text{DQN}$ baselines.
 
 **B. Test Cases and Validation**
 
 <img width="1442" height="220" alt="Screenshot 2025-11-28 135739" src="https://github.com/user-attachments/assets/a2fbe868-1d26-4bfe-a73f-a5bab5ea359d" />
 
-This output summarizes the validation of core project modules, including the DDQN+PER efficiency and the Emergency Priority system.
+TC-1 (Balanced Peak Hour Load): Successfully demonstrated the lowest congestion and emissions metrics, proving core adaptive efficiency.
 
+TC-2 (Emergency Vehicle Protocol): Confirmed near-zero delay for the priority vehicle, validating the critical override logic.
+
+TC-3 (Highly Unbalanced Flow): The agent adapted by allocating proportionally more green time to the congested roads, preventing gridlock.
 
 ## Results and Impact
-The AI-Based Safe and Sustainable Traffic Signal System significantly enhances urban mobility and environmental health. The $28\%$ reduction in average waiting time directly improves commuter welfare and reduces time spent idling. The $18\%$ reduction in $\text{CO}_2$ emissions showcases the efficacy of the custom reward function in driving sustainable behavior. Furthermore, the integration of the Emergency Vehicle Priority module enhances public safety by ensuring critical vehicles face near-zero delay.
+The system successfully addresses the core problems of urban congestion and environmental pollution.Enhanced Urban Mobility: The $28\%$ reduction in average waiting time significantly improves travel efficiency for commuters.Environmental Sustainability: The $18\%$ reduction in $\text{CO}_2$ emissions directly contributes to cleaner air and aligns with urban sustainability goals.Improved Safety: The integration of the Emergency Vehicle Priority module ensures that safety-critical services face minimal delays, saving time and potentially lives.Foundation for Smart Cities: The project provides a smart and scalable solution based on Deep Reinforcement Learning, positioning it as an integral component for future Intelligent Transportation Systems (ITS).
 
 This project serves as a strong foundation for future developments in Smart City infrastructure and contributes to creating a more efficient, inclusive, and environmentally responsible urban environment.
 
